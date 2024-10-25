@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Anime Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: 'Arial', sans-serif;
+    }
+    canvas {
+      background-color: #fff;
+      box-shadow: 5px 5px 10px rgba(253, 53, 53, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="animeChart"></canvas>
+
+  <script>
+    const ctx = document.getElementById('animeChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Naruto', 'Black Clover', 'One Piece', 'Tokyo Ghoul','Another', 'Violet EverGarden'],
+        datasets: [{
+          label: 'Popularity (Based on Fanbase)',
+          data: [85, 70, 90, 65, 20,11],
+          backgroundColor: [
+            'rgba(255, 165, 0, 0.2)', // Orange for Naruto
+            'rgba(0, 0, 0, 0.2)', // Black for Black Clover
+            'rgba(0, 191, 255, 0.2)', // Blue for One Piece
+            'rgba(128, 0, 0, 0.2)', // Red for Tokyo Ghoul
+            'rgb(255,192,203)',
+            'rgb(173,255,47)'
+          ],
+          borderColor: [
+            'rgba(255, 165, 0, 1)',
+            'rgba(0, 0, 0, 1)',
+            'rgba(0, 191, 255, 1)',
+            'rgba(128, 0, 0, 1)',
+             'rgba(128, 0, 0, 1)',
+             'rgba(128, 0, 0, 1)'
+          ],
+          borderWidth: 3
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            max: 100, // Set maximum to 100 for percentage look
+            ticks: {
+              callback: function(value) {
+                return value + '%';
+              }
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: true,
+            position: 'bottom',
+            labels: {
+              font: {
+                size: 14,
+                weight: 'bold'
+              }
+            }
+          },
+          title: {
+            display: true,
+            
+            text: 'Anime Popularity',
+            font: {
+              size: 20,
+              weight: 'bold'
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
